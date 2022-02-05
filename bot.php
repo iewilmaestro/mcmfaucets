@@ -10,7 +10,7 @@
 */
 error_reporting(0);
 $zone = json_decode(file_get_contents("http://ip-api.com/json"),1)["timezone"];if($zone){date_default_timezone_set($zone);}
-$host="https://mcmfaucets.xyz/";
+$host="https://mcmfaucets.xyz";
 $a = ["iewil","mcmfaucets","1.5"];
 $reg = "https://bit.ly/3HcVfMr";
 $yt = "https://youtu.be/7uA21QlQI_s";
