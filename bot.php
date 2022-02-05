@@ -1,17 +1,8 @@
 <?php
-/*
-*
-*Creator	: iewil
-*Github		: https://github.com/iewilmaestro
-*Youtube	: https://www.youtube.com/c/iewil
-*Telegram	: @iewil57
-*Support	: Team-Function-INDO
-*
-*/
 error_reporting(0);
 $zone = json_decode(file_get_contents("http://ip-api.com/json"),1)["timezone"];if($zone){date_default_timezone_set($zone);}
 $host="https://mcmfaucets.xyz";
-$a = ["iewil","mcmfaucets","1.5"];
+$a = ["iewil","mcmfaucets","1.6"];
 $reg = "https://bit.ly/3HcVfMr";
 $yt = "https://youtu.be/7uA21QlQI_s";
 $server = "https://pastebin.com/raw/5mri6gAM";
@@ -36,21 +27,30 @@ if($pil==1){goto faucet;
 faucet:
 while(true){
 	$r=Run($host."/user/auto",head(),$data);
+	//print_r($r);
 	if(preg_match('/Cloudflare/',$r)){
 		echo col("cloudflare detect\n","m");
 		line();sleep(10);goto menu;
 	}
 	$tmr=explode('</span>',explode('<span id="seconds">',$r)[1])[0];
-    $token=explode('">',explode('<input type="hidden" name="',$r)[1])[0];
-    $data=str_replace('" value="','=',$token);
-	preg_match_all('#<div class="alert alert-success" role="alert">(.*?)<a#is',$r,$has);
-	if($has[1]){
+	$token=explode('">',explode('<input type="hidden" name="',$r)[1])[0];
+	$data=str_replace('" value="','=',$token);
+	$has=explode('<span class="badge bg-info">',$r);
+	if($has[2]){
 		echo token();
-		for($i=0;$i<count($has[1]);$i++){
-			$ss=explode(",",$has[1][$i])[0];
-			echo col($ss,'h')."\n";
+		for($i=2;$i<count($has);$i++){
+			$sil=explode('<a',$has[$i])[0];
+			if(preg_match('/Invalid claim/',$sil)){}else{
+				if(preg_match('/too low/',$sil)){
+					$ss=explode(".",$sil)[0];
+					echo col($ss,'m')."\n";
+				}else{
+					$ss=explode(",",$sil)[0];
+					echo col($ss,'h')."\n";
+				}
+			}
 		}
-		line();
+			line();
 	}
     if($tmr){
     	tmr($tmr);
@@ -72,7 +72,7 @@ function head(){$user=Save("User_Agent");$cookie=Save("Cookie");$ua=["user-agent
 function token(){global $host;
 	$url=$host."/user/dashboard";
 	$r=Run($url,head());
-	$token=explode('</h2>',explode('<h2 class="mb-2 fw-normal mt-2">',$r)[1])[0];
+	$token=explode('/',explode('<li class="btn btn-outline-success">Balance: ',$r)[1])[0];
 	if($token){
 		return col("Your Token ","k").col("~> ","m").col($token,"p")."\n";
 	}else{
