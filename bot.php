@@ -3,7 +3,7 @@ error_reporting(0);
 $zone = json_decode(file_get_contents("http://ip-api.com/json"),1)["timezone"];if($zone){date_default_timezone_set($zone);}
 $host="https://mcmfaucets.xyz";
 $a = ["iewil","mcmfaucets","1.6"];
-$reg = "https://bit.ly/3HcVfMr";
+$reg = "https://bit.ly/3uykFkR";
 $yt = "https://youtu.be/7uA21QlQI_s";
 $server = "https://pastebin.com/raw/5mri6gAM";
 $disable = col("Script mati karena web update / scam!","m")."\nSupport Channel saya dengan cara\nSubscribe ".col("https://www.youtube.com/c/iewil","k")."\nkarena subscribe itu gratis :D\nUntuk mendapatkan info Script terbaru\nJoin grub via telegram ~> ".col("https://t.me/Iewil_G","c")."\nðŸ‡®ðŸ‡© ".col("Family-Team-Function-INDO","b")."\n";Short();bn();
